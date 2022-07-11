@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { HiHome } from 'react-icons/hi';
 import { FaShoppingBag } from 'react-icons/fa';
 import { FaInfoCircle } from 'react-icons/fa';
@@ -11,33 +11,56 @@ const selectedLinkClasses =
 const linkWrapperClasses = 'flex items-center space-x-3';
 
 const Sidebar = () => {
+    const location = useLocation();
+    console.log(location);
+
     return (
         <nav className="mt-12 hidden lg:block">
             <div className="sticky top-40 flex-col space-y-12 lg:flex">
-                <Link to="/" className={selectedLinkClasses}>
+                <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                        isActive ? selectedLinkClasses : linkClasses
+                    }
+                >
                     <div className={linkWrapperClasses}>
                         <HiHome size={20} />
                         <span>Home</span>
                     </div>
-                </Link>
-                <Link to="/shop" className={linkClasses}>
+                </NavLink>
+                <NavLink
+                    to="/shop"
+                    className={({ isActive }) =>
+                        isActive ? selectedLinkClasses : linkClasses
+                    }
+                >
                     <div className={linkWrapperClasses}>
                         <FaShoppingBag size={20} />
                         <span>Shop</span>
                     </div>
-                </Link>
-                <Link to="/about" className={linkClasses}>
+                </NavLink>
+                <NavLink
+                    to="/about"
+                    className={({ isActive }) =>
+                        isActive ? selectedLinkClasses : linkClasses
+                    }
+                >
                     <div className={linkWrapperClasses}>
                         <FaInfoCircle size={20} />
                         <span>About</span>
                     </div>
-                </Link>
-                <Link to="/contact" className={linkClasses}>
+                </NavLink>
+                <NavLink
+                    to="/contact"
+                    className={({ isActive }) =>
+                        isActive ? selectedLinkClasses : linkClasses
+                    }
+                >
                     <div className={linkWrapperClasses}>
                         <BsChatSquareFill size={20} />
                         <span>Contact</span>
                     </div>
-                </Link>
+                </NavLink>
             </div>
         </nav>
     );

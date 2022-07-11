@@ -1,26 +1,29 @@
 import React from 'react';
-import electronics from '../../assets/electronics.jpg';
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
     return (
-        <section className="flex flex-col space-y-8 lg:flex-row lg:justify-between lg:space-y-0 lg:space-x-12">
-            <div className="flex flex-col items-center space-y-8 lg:items-start lg:justify-around lg:space-y-0">
-                <h1 className="text-5xl font-normal">
-                    <strong className="font-extrabold">Choose your</strong>{' '}
-                    <span className="text-purple">interest</span>
-                </h1>
-                <button className="rounded-xl bg-purple py-4 px-6 text-center text-white">
-                    Start shopping
-                </button>
+        <article className="max-w-[18rem] space-y-4 md:max-w-lg md:space-y-8">
+            <div className="flex items-center justify-between gap-4 text-4xl font-bold md:text-6xl">
+                <h2>SHOP</h2>
+                <h2>WITH</h2>
+                <h2>US</h2>
             </div>
-            <div className="grid place-items-start">
-                <img
-                    src={electronics}
-                    alt="pieces of electronics"
-                    className="w-90 rounded-md"
-                />
+            <div className="flex items-center justify-between gap-3 text-4xl font-bold md:text-6xl">
+                <h2 className="pr-2">GET</h2>
+                <motion.button
+                    className="flex-1 rounded-xl bg-purple py-4 px-6 text-center text-sm font-medium text-white md:w-full md:text-lg"
+                    whileHover={{ scale: 1.06 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    Shop now
+                </motion.button>
             </div>
-        </section>
+            <div className="flex justify-between gap-4 text-4xl font-bold md:text-6xl">
+                <h2>LATEST</h2>
+                <h2>DEALS</h2>
+            </div>
+        </article>
     );
 };
 
