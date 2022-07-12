@@ -1,38 +1,23 @@
 import React from 'react';
-import menFashion from '../assets/men-fashion-2.jpg';
-import womenFashion from '../assets/women-fashion.jpg';
-import HeroSection from '../components/Home/HeroSection';
-
-const imageWidthClasses = 'w-44 md:w-52 lg:w-64';
+import Hero from '../components/Home/Hero';
+import MainContent from '../components/Home/MainContent';
+import Features from '../components/Home/Features';
 
 export const Home = () => {
     return (
         <main className="flex w-full flex-col space-y-12 rounded-xl bg-paleWhite py-12 px-10 shadow-lg">
-            <div className="flex h-full flex-col items-center justify-center space-y-12">
-                <div className="flex w-full gap-6 self-start">
-                    <img
-                        className={imageWidthClasses}
-                        src={menFashion}
-                        alt=""
-                    />
-                    <p className="mt-8">
-                        The latest and greatest fashion for men at unbeatable
-                        prices, go get yours before its all sold out!
-                    </p>
-                </div>
-                <HeroSection />
-                <div className="flex gap-4 self-end">
-                    <p className="mt-8">
-                        The latest and greatest fashion for women at unbeatable
-                        prices, go get yours before its all sold out!
-                    </p>
-                    <img
-                        className={imageWidthClasses}
-                        src={womenFashion}
-                        alt=""
-                    />
-                </div>
-            </div>
+            <section className="flex h-full flex-col items-center justify-center space-y-12">
+                <Hero />
+            </section>
+            <section className="px-6 py-12 lg:px-12 xl:px-28 2xl:px-44">
+                <MainContent />
+            </section>
+            <section className="mb-32 border-t-[1px] border-t-slate-300 pt-2 text-center text-gray-800">
+                <h2 className="mb-12 text-3xl font-bold">
+                    Why <u className="text-purple"> us?</u>
+                </h2>
+                <Features />
+            </section>
         </main>
     );
 };

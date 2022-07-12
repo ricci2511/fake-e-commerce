@@ -1,6 +1,6 @@
 import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
-import NavLinks from './NavLinks';
+import HamburgerLinks from './HamburgerLinks';
 import { useState } from 'react';
 import '../../hamburger.css';
 
@@ -15,7 +15,7 @@ const HamburgerMenu = () => {
             onOpen={handleOnOpen}
             onClose={handleOnOpen}
         >
-            <NavLinks isOpen={isOpen} changeIsOpen={handleOnOpen} />
+            <HamburgerLinks changeIsOpen={handleOnOpen} />
         </Menu>
     );
 };

@@ -5,7 +5,7 @@ import HamburgerMenu from './elements/HamburgerMenu';
 
 const Header = () => {
     return (
-        <header className="sticky top-0 bg-lightPink shadow-lg">
+        <header className="sticky top-0 z-50 bg-lightPink shadow-lg">
             <div className="container mx-auto flex items-center justify-between p-4 lg:flex">
                 <div id="logo" className="flex items-center space-x-4">
                     <img src={logo} alt="logo" className="w-12" />
