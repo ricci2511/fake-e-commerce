@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const categoryClasses = 'p-4 hover:text-brightRed';
 const selectedCategoryClasses = 'relative p-4 text-brightRed';
 
-const ShopCategories = () => {
+const Categories = () => {
     const categories = [
         { label: 'Men clothing' },
         { label: 'Women clothing' },
@@ -41,4 +41,4 @@ const ShopCategories = () => {
     );
 };
 
-export default ShopCategories;
+export default Categories;

@@ -1,7 +1,7 @@
 import React from 'react';
-import Hero from '../components/Home/Hero';
-import MainContent from '../components/Home/MainContent';
-import Features from '../components/Home/Features';
+import Hero from './Hero';
+import MainContent from './MainContent';
+import Features from './Features';
 
 export const Home = () => {
     return (

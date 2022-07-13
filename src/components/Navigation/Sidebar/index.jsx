@@ -1,5 +1,5 @@
 import React from 'react';
-import SidebarLink from './elements/SidebarLink';
+import SidebarLink from './SidebarLink';
 
 const Sidebar = () => {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LinkWrapper from './LinkWrapper';
+import LinkWrapper from '../LinkWrapper';
 import { motion } from 'framer-motion';
 
 const linkClasses = 'w-52 min-w-full py-3 px-2';

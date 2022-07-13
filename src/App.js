@@ -1,4 +1,4 @@
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/Navigation/Sidebar';
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';

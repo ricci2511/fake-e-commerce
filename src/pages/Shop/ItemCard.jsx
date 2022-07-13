@@ -2,7 +2,7 @@ import React from 'react';
 import sweatshirt from '../../assets/sweatshirt.jpg';
 import { FaCartPlus } from 'react-icons/fa';
 
-const ShopItem = () => {
+const ItemCard = () => {
     return (
         <article className="flex flex-col space-y-4 rounded-2xl bg-white p-4 shadow-xl">
             <img src={sweatshirt} alt="sweatshirt" className="max-h-72" />
@@ -20,4 +20,4 @@ const ShopItem = () => {
     );
 };
 
-export default ShopItem;
+export default ItemCard;

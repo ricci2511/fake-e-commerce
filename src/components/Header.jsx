@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../assets/logo.svg';
-import ShoppingCartButton from './elements/ShoppingCartButton';
-import HamburgerMenu from './elements/HamburgerMenu';
+import ShoppingCartButton from './UI/ShoppingCartButton';
+import HamburgerMenu from './Navigation/HamburgerMenu';
 
 const Header = () => {
     return (

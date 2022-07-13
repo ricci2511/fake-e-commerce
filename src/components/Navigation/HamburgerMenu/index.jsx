@@ -2,7 +2,7 @@ import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import HamburgerLinks from './HamburgerLinks';
 import { useState } from 'react';
-import '../../hamburger.css';
+import '../../../hamburger.css';
 
 const HamburgerMenu = () => {
     const [isOpen, setIsOpen] = useState(false);

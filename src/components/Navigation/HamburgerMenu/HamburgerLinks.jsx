@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LinkWrapper from './LinkWrapper';
+import LinkWrapper from '../LinkWrapper';
 
 const HamburgerLinks = ({ changeIsOpen }) => {
     return (
