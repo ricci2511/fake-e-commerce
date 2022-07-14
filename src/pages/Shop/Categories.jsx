@@ -4,38 +4,39 @@ import React, { useState } from 'react';
 const categoryClasses = 'p-4 hover:text-brightRed';
 const selectedCategoryClasses = 'relative p-4 text-brightRed';
 
-const Categories = () => {
+const Categories = ({ changeCategory }) => {
     const categories = [
-        { label: 'Men clothing' },
-        { label: 'Women clothing' },
-        { label: 'Electronics' },
-        { label: 'Jewelery' },
+        { label: 'All', category: '' },
+        { label: `Men's clothing`, category: `men's clothing` },
+        { label: `Women's clothing`, category: `women's clothing` },
+        { label: 'Electronics', category: 'electronics' },
+        { label: 'Jewelery', category: 'jewelery' },
     ];
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
     return (
-        <nav className="flex w-full items-center justify-between border-b border-gray-300 text-center text-sm font-medium">
+        <nav className="flex w-full items-end justify-between border-b border-gray-300 text-center text-sm font-medium">
             {categories.map((category) => (
-                // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                <a
+                <button
                     key={category.label}
                     className={
-                        JSON.stringify(category) ===
-                        JSON.stringify(selectedCategory)
+                        category.label === selectedCategory.label
                             ? selectedCategoryClasses
                             : categoryClasses
                     }
-                    onClick={() => setSelectedCategory({ ...category })}
+                    onClick={() => {
+                        setSelectedCategory({ ...category });
+                        changeCategory(category.category);
+                    }}
                 >
                     {category.label}
-                    {JSON.stringify(category) ===
-                    JSON.stringify(selectedCategory) ? (
+                    {category.label === selectedCategory.label ? (
                         <motion.div
                             className="absolute -bottom-px left-0 right-0 h-px bg-brightRed"
                             layoutId="underline"
                         />
                     ) : null}
-                </a>
+                </button>
             ))}
         </nav>
     );

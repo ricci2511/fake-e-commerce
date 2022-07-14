@@ -1,31 +1,38 @@
 import React from 'react';
-import sweatshirt from '../../assets/sweatshirt.jpg';
 import { FaCartPlus } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
-const ItemCard = () => {
+const ItemCard = ({ title, image, price }) => {
     return (
-        <motion.article
-            className="flex cursor-pointer flex-col space-y-4 rounded-2xl bg-white p-4 shadow-xl"
-            whileHover={{
-                scale: 1.02,
-            }}
-            transition={{
-                duration: 0.25,
-            }}
-        >
-            <img src={sweatshirt} alt="sweatshirt" className="max-h-72" />
-            <div className="flex flex-col">
-                <h4 className="font-medium">Sweatshirt</h4>
-                <p className="text-lg font-bold">$40.00</p>
+        <article className="flex flex-col rounded-2xl bg-white shadow-xl">
+            <div className="mx-auto h-80 p-12">
+                <motion.img
+                    src={image}
+                    alt={title}
+                    className="h-full cursor-pointer"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                />
             </div>
-            <button className="bg-purple py-2 px-6 text-white">
-                <div className="flex flex-row items-center justify-center space-x-3">
-                    <FaCartPlus size={18} />
-                    <span>Add to cart</span>
+            <div className="flex h-full flex-col gap-6 p-8">
+                <div className="flex h-full flex-col justify-end gap-4">
+                    <h4 className="font-medium">{title}</h4>
+                    <p className="text-lg font-bold">${price}</p>
                 </div>
-            </button>
-        </motion.article>
+                <motion.button
+                    className="border-2 border-purple bg-white py-2 px-6 text-black"
+                    whileHover={{
+                        backgroundColor: '#5C4EBD',
+                        color: 'rgb(255, 255, 255)',
+                    }}
+                >
+                    <div className="flex flex-row items-center justify-center space-x-3">
+                        <FaCartPlus size={18} />
+                        <span>Add to cart</span>
+                    </div>
+                </motion.button>
+            </div>
+        </article>
     );
 };
 
