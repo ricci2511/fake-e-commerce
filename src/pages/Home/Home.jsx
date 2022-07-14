@@ -2,10 +2,11 @@ import React from 'react';
 import Hero from './Hero';
 import MainContent from './MainContent';
 import Features from './Features';
+import AnimatedMain from '../../components/UI/AnimatedMain';
 
-export const Home = () => {
+const Home = () => {
     return (
-        <main className="flex w-full flex-col space-y-12 rounded-xl bg-paleWhite py-12 px-10 shadow-lg">
+        <AnimatedMain>
             <section className="flex h-full flex-col items-center justify-center space-y-12">
                 <Hero />
             </section>
@@ -18,6 +19,8 @@ export const Home = () => {
                 </h2>
                 <Features />
             </section>
-        </main>
+        </AnimatedMain>
     );
 };
+
+export default Home;

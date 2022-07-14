@@ -1,10 +1,11 @@
 import React from 'react';
 import Categories from './Categories';
 import ItemCard from './ItemCard';
+import AnimatedMain from '../../components/UI/AnimatedMain';
 
 export const Shop = () => {
     return (
-        <main className="flex w-full flex-col space-y-12 rounded-xl bg-paleWhite py-12 px-10 shadow-lg">
+        <AnimatedMain>
             <section>
                 <Categories />
             </section>
@@ -22,6 +23,8 @@ export const Shop = () => {
                 <ItemCard />
                 <ItemCard />
             </section>
-        </main>
+        </AnimatedMain>
     );
 };
+
+export default Shop;
