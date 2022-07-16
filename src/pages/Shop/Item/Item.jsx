@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AnimatedMain from '../../../components/UI/AnimatedMain';
-import { motion } from 'framer-motion';
-import { FaCartPlus } from 'react-icons/fa';
 import ApiData from '../../../config/ApiData';
+import AddToCartButton from '../../../components/UI/AddToCartButton';
 
 const Item = () => {
     const { itemId } = useParams();
@@ -45,18 +44,12 @@ const Item = () => {
                         <p className="self-end text-xl font-bold">
                             ${item.price}
                         </p>
-                        <motion.button
-                            className="self-end border-2 border-purple bg-white py-2 px-6 text-black"
-                            whileHover={{
-                                backgroundColor: '#5C4EBD',
-                                color: 'rgb(255, 255, 255)',
-                            }}
-                        >
-                            <div className="flex flex-row items-center justify-center space-x-3">
-                                <FaCartPlus size={18} />
-                                <span>Add to cart</span>
-                            </div>
-                        </motion.button>
+                        <AddToCartButton
+                            id={parseInt(itemId)}
+                            title={item.title}
+                            image={item.image}
+                            price={item.price}
+                        />
                     </section>
                 </div>
             </div>

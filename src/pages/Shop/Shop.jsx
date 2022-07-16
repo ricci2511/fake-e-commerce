@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Categories from './Categories';
-import ItemCard from './ItemCard';
+import ShopItem from './ShopItem';
 import AnimatedMain from '../../components/UI/AnimatedMain';
 import ApiData from '../../config/ApiData';
 import { BouncingBall } from 'react-svg-spinners';
@@ -42,8 +42,8 @@ export const Shop = () => {
                 {category !== ''
                     ? items
                           .filter((item) => item.category === category)
-                          .map((item) => <ItemCard key={item.id} {...item} />)
-                    : items.map((item) => <ItemCard key={item.id} {...item} />)}
+                          .map((item) => <ShopItem key={item.id} {...item} />)
+                    : items.map((item) => <ShopItem key={item.id} {...item} />)}
             </section>
         </AnimatedMain>
     );

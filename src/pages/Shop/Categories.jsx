@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 
-const categoryClasses = 'p-4 hover:text-brightRed';
-const selectedCategoryClasses = 'relative p-4 text-brightRed';
+const categoryClasses = 'p-4 hover:text-purple';
+const selectedCategoryClasses = 'relative p-4 text-purple';
 
 const Categories = ({ changeCategory }) => {
     const categories = [
@@ -32,7 +32,7 @@ const Categories = ({ changeCategory }) => {
                     {category.label}
                     {category.label === selectedCategory.label ? (
                         <motion.div
-                            className="absolute -bottom-px left-0 right-0 h-px bg-brightRed"
+                            className="absolute -bottom-px left-0 right-0 h-px bg-purple"
                             layoutId="underline"
                         />
                     ) : null}

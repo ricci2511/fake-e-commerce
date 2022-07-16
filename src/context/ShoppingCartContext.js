@@ -15,8 +15,27 @@ export const ShoppingCartProvider = ({ children }) => {
         0
     );
 
-    const increaseCartQuantity = ({ id, title, image, price }) => {
+    const getItemQuantity = (id) => {
+        return cartItems.find((item) => item.id === id)?.quantity || 0;
+    };
+
+    const handleItemQuantityChange = (e, id) => {
         setCartItems((currentItems) => {
+            return currentItems.map((item) => {
+                if (item.id === id) {
+                    const quantityValue =
+                        parseInt(e.target.value) || item.quantity;
+                    return { ...item, quantity: quantityValue };
+                }
+
+                return item;
+            });
+        });
+    };
+
+    const increaseCartQuantity = (id, item) => {
+        setCartItems((currentItems) => {
+            // first check if the item we want to add already exists
             if (currentItems.find((item) => item.id === id)) {
                 return currentItems.map((item) => {
                     if (item.id === id) {
@@ -27,8 +46,32 @@ export const ShoppingCartProvider = ({ children }) => {
                 });
             }
 
+            // in case it is a new item we add the necessary properties
+            const { title, image, price } = item;
             return [...currentItems, { id, title, image, price, quantity: 1 }];
         });
+    };
+
+    const decreaseCartQuantity = (id) => {
+        setCartItems((currentItems) => {
+            if (currentItems.find((item) => item.id === id)?.quantity > 1) {
+                return currentItems.map((item) => {
+                    if (item.id === id) {
+                        return { ...item, quantity: item.quantity - 1 };
+                    }
+
+                    return item;
+                });
+            }
+
+            return currentItems.filter((item) => item.id !== id);
+        });
+    };
+
+    const removeCartItem = (id) => {
+        setCartItems((currentItems) =>
+            currentItems.filter((item) => item.id !== id)
+        );
     };
 
     return (
@@ -38,7 +81,11 @@ export const ShoppingCartProvider = ({ children }) => {
                 openCart,
                 closeCart,
                 totalCartQuantity,
+                getItemQuantity,
+                handleItemQuantityChange,
                 increaseCartQuantity,
+                decreaseCartQuantity,
+                removeCartItem,
             }}
         >
             {children}
