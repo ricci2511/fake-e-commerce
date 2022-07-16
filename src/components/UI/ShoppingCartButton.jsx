@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { ShoppingCartContext } from '../../context/ShoppingCartContext';
 
 const ShoppingCartButton = () => {
+    const { totalCartQuantity } = useContext(ShoppingCartContext);
+
     return (
         <motion.button
             className="relative cursor-pointer rounded-full bg-white p-4"
@@ -19,7 +22,7 @@ const ShoppingCartButton = () => {
         >
             <FaShoppingCart size={22} />
             <div className="absolute bottom-0 right-0 flex h-6 w-6 translate-y-2 items-center justify-center rounded-full bg-red-500 text-white">
-                3
+                {totalCartQuantity}
             </div>
         </motion.button>
     );

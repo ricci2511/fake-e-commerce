@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaCartPlus } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { ShoppingCartContext } from '../../context/ShoppingCartContext';
 
-const ItemCard = ({ id, title, description, image, price }) => {
+const ItemCard = ({ id, title, image, price }) => {
+    const { increaseCartQuantity } = useContext(ShoppingCartContext);
+
     return (
         <article className="flex flex-col rounded-2xl bg-white shadow-xl">
             <div className="mx-auto h-80 p-12">
@@ -28,6 +31,14 @@ const ItemCard = ({ id, title, description, image, price }) => {
                         backgroundColor: '#5C4EBD',
                         color: 'rgb(255, 255, 255)',
                     }}
+                    onClick={() =>
+                        increaseCartQuantity({
+                            id: id,
+                            title: title,
+                            image: image,
+                            price: price,
+                        })
+                    }
                 >
                     <div className="flex flex-row items-center justify-center space-x-3">
                         <FaCartPlus size={18} />
