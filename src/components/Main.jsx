@@ -6,6 +6,7 @@ import About from '../pages/About';
 import Contact from '../pages/Contact';
 import { AnimatePresence } from 'framer-motion';
 import Item from '../pages/Shop/Item';
+import PageNotFound from '../pages/PageNotFound/PageNotFound';
 
 const Main = () => {
     const location = useLocation();
@@ -24,6 +25,7 @@ const Main = () => {
                 </Route>
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<PageNotFound />} />
             </Routes>
         </AnimatePresence>
     );
