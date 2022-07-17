@@ -1,22 +1,17 @@
 import React from 'react';
-import { slide as Menu } from 'react-burger-menu';
 import HamburgerLinks from './HamburgerLinks';
-import { useState } from 'react';
 import '../../../hamburger.css';
+import RightSideMenu from '../../UI/RightSideMenu';
+import DarkOverlay from '../../UI/DarkOverlay';
 
-const HamburgerMenu = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const handleOnOpen = () => setIsOpen((prevState) => !prevState);
-
+const HamburgerMenu = ({ isOpen, changeIsOpen }) => {
     return (
-        <Menu
-            right
-            isOpen={isOpen}
-            onOpen={handleOnOpen}
-            onClose={handleOnOpen}
-        >
-            <HamburgerLinks changeIsOpen={handleOnOpen} />
-        </Menu>
+        <>
+            <RightSideMenu isOpen={isOpen} width="w-72">
+                <HamburgerLinks changeIsOpen={changeIsOpen} />
+            </RightSideMenu>
+            <DarkOverlay isOpen={isOpen} />
+        </>
     );
 };
 

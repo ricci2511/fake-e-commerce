@@ -4,7 +4,7 @@ import LinkWrapper from '../LinkWrapper';
 
 const HamburgerLinks = ({ changeIsOpen }) => {
     return (
-        <>
+        <nav className="flex flex-col gap-12 px-8 py-24">
             <Link to="/" onClick={changeIsOpen}>
                 <LinkWrapper path="/" />
             </Link>
@@ -17,7 +17,7 @@ const HamburgerLinks = ({ changeIsOpen }) => {
             <Link to="/contact" onClick={changeIsOpen}>
                 <LinkWrapper path="/contact" />
             </Link>
-        </>
+        </nav>
     );
 };
 

@@ -15,7 +15,7 @@ const CartItem = ({ item }) => {
     const quantity = getItemQuantity(item.id);
 
     return (
-        <div className="relative flex gap-6 border-b-2 border-slate-200 p-3">
+        <article className="relative flex gap-6 border-b-2 border-slate-200 p-3">
             <button
                 className="absolute right-0 -top-4"
                 aria-label="delete"
@@ -57,7 +57,7 @@ const CartItem = ({ item }) => {
                     </div>
                 </div>
             </section>
-        </div>
+        </article>
     );
 };
 
