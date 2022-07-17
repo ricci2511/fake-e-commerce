@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { FaCartPlus } from 'react-icons/fa';
-import { ShoppingCartContext } from '../../context/ShoppingCartContext';
+import { ShoppingCartContext } from 'context/ShoppingCartContext';
 
 const AddToCartButton = ({ id, title, image, price }) => {
     const { increaseCartQuantity } = useContext(ShoppingCartContext);

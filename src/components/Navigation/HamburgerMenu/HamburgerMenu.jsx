@@ -1,7 +1,7 @@
 import React from 'react';
 import HamburgerLinks from './HamburgerLinks';
-import RightSideMenu from '../../UI/RightSideMenu';
-import DarkOverlay from '../../UI/DarkOverlay';
+import RightSideMenu from 'components/UI/RightSideMenu';
+import DarkOverlay from 'components/UI/DarkOverlay';
 
 const HamburgerMenu = ({ isOpen, changeIsOpen }) => {
     return (

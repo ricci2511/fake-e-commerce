@@ -2,7 +2,7 @@ import React from 'react';
 import Hero from './Hero';
 import MainContent from './MainContent';
 import Features from './Features';
-import AnimatedMain from '../../components/UI/AnimatedMain';
+import AnimatedMain from 'components/UI/AnimatedMain';
 
 const Home = () => {
     return (

@@ -1,9 +1,9 @@
 import React from 'react';
-import AnimatedMain from '../../components/UI/AnimatedMain';
-import { ReactComponent as GithubSVG } from '../../assets/github.svg';
-import { ReactComponent as MailboxSVG } from '../../assets/mailbox.svg';
-import { ReactComponent as TelegramSVG } from '../../assets/telegram.svg';
-import { ReactComponent as RedditSVG } from '../../assets/reddit.svg';
+import AnimatedMain from 'components/UI/AnimatedMain';
+import { ReactComponent as GithubSVG } from 'assets/github.svg';
+import { ReactComponent as MailboxSVG } from 'assets/mailbox.svg';
+import { ReactComponent as TelegramSVG } from 'assets/telegram.svg';
+import { ReactComponent as RedditSVG } from 'assets/reddit.svg';
 import { motion } from 'framer-motion';
 
 export const Contact = () => {

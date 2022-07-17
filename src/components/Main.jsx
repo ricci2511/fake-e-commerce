@@ -1,12 +1,12 @@
 import React, { useLayoutEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Home from '../pages/Home';
-import Shop from '../pages/Shop';
-import About from '../pages/About';
-import Contact from '../pages/Contact';
+import Home from 'pages/Home';
+import Shop from 'pages/Shop';
+import About from 'pages/About';
+import Contact from 'pages/Contact';
 import { AnimatePresence } from 'framer-motion';
-import Item from '../pages/Shop/Item';
-import PageNotFound from '../pages/PageNotFound/PageNotFound';
+import Item from 'pages/Shop/Item';
+import PageNotFound from 'pages/PageNotFound';
 
 const Main = () => {
     const location = useLocation();

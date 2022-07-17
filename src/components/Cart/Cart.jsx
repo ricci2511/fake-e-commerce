@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { ShoppingCartContext } from '../../context/ShoppingCartContext';
-import DarkOverlay from '../UI/DarkOverlay';
+import { ShoppingCartContext } from 'context/ShoppingCartContext';
+import DarkOverlay from 'components/UI/DarkOverlay';
 import CartItem from './CartItem';
 import { MdClose } from 'react-icons/md';
 import { FaSadTear } from 'react-icons/fa';
-import { formatPrice } from '../../utils/formatPrice';
-import RightSideMenu from '../UI/RightSideMenu';
+import { formatPrice } from 'utils/formatPrice';
+import RightSideMenu from 'components/UI/RightSideMenu';
 
 const Cart = ({ isOpen }) => {
     const { closeCart, cartItems, getCartSubtotal } =

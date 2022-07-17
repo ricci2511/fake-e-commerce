@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { ShoppingCartContext } from '../../context/ShoppingCartContext';
+import { ShoppingCartContext } from 'context/ShoppingCartContext';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
-import { formatPrice } from '../../utils/formatPrice';
+import { formatPrice } from 'utils/formatPrice';
 
 const CartItem = ({ item }) => {
     const {

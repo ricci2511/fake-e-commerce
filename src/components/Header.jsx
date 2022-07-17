@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import logo from '../assets/logo.svg';
-import ShoppingCartButton from './UI/ShoppingCartButton';
-import HamburgerMenu from './Navigation/HamburgerMenu';
-import { ShoppingCartContext } from '../context/ShoppingCartContext';
+import logo from 'assets/logo.svg';
+import ShoppingCartButton from 'components/UI/ShoppingCartButton';
+import HamburgerMenu from 'components/Navigation/HamburgerMenu';
+import { ShoppingCartContext } from 'context/ShoppingCartContext';
 import { Link } from 'react-router-dom';
 import { Divide as Hamburger } from 'hamburger-react';
 

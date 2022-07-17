@@ -1,5 +1,5 @@
 import React from 'react';
-import womenFashion from '../../assets/women-fashion.jpg';
+import womenFashion from 'assets/women-fashion.jpg';
 
 const MainContent = () => {
     return (

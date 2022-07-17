@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import AnimatedMain from '../../../components/UI/AnimatedMain';
-import ApiData from '../../../config/ApiData';
-import AddToCartButton from '../../../components/UI/AddToCartButton';
-import ErrorMessageWrapper from '../../../components/UI/ErrorMessageWrapper';
-import LoadingWrapper from '../../../components/UI/LoadingWrapper';
-import { formatPrice } from '../../../utils/formatPrice';
+import AnimatedMain from 'components/UI/AnimatedMain';
+import ApiData from 'config/ApiData';
+import AddToCartButton from 'components/UI/AddToCartButton';
+import ErrorMessageWrapper from 'components/UI/ErrorMessageWrapper';
+import LoadingWrapper from 'components/UI/LoadingWrapper';
+import { formatPrice } from 'utils/formatPrice';
 
 const Item = () => {
     const { itemId } = useParams();

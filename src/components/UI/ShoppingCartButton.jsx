@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { ShoppingCartContext } from '../../context/ShoppingCartContext';
+import { ShoppingCartContext } from 'context/ShoppingCartContext';
 
 const ShoppingCartButton = () => {
     const { totalCartQuantity } = useContext(ShoppingCartContext);

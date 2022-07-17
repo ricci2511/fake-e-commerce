@@ -1,8 +1,7 @@
 import React from 'react';
-import AnimatedMain from '../../components/UI/AnimatedMain';
+import AnimatedMain from 'components/UI/AnimatedMain';
 import { FaReact } from 'react-icons/fa';
 import { SiTailwindcss, SiFramer } from 'react-icons/si';
-import { motion } from 'framer-motion';
 
 const About = () => {
     return (

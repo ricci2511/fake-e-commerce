@@ -1,7 +1,7 @@
-import Sidebar from './components/Navigation/Sidebar';
-import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
+import Sidebar from 'components/Navigation/Sidebar';
+import Header from 'components/Header';
+import Main from 'components/Main';
+import Footer from 'components/Footer';
 import { ShoppingCartProvider } from './context/ShoppingCartContext';
 
 function App() {

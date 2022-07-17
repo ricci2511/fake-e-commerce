@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Categories from './Categories';
 import ShopItem from './ShopItem';
-import AnimatedMain from '../../components/UI/AnimatedMain';
-import ApiData from '../../config/ApiData';
-import ErrorMessageWrapper from '../../components/UI/ErrorMessageWrapper';
-import LoadingWrapper from '../../components/UI/LoadingWrapper';
+import AnimatedMain from 'components/UI/AnimatedMain';
+import ApiData from 'config/ApiData';
+import ErrorMessageWrapper from 'components/UI/ErrorMessageWrapper';
+import LoadingWrapper from 'components/UI/LoadingWrapper';
 
 export const Shop = () => {
     const [items, setItems] = useState([]);
