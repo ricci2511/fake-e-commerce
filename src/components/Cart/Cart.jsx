@@ -7,7 +7,9 @@ import { FaSadTear } from 'react-icons/fa';
 import { formatPrice } from '../../utils/formatPrice';
 
 const Cart = ({ isOpen }) => {
-    const { closeCart, cartItems } = useContext(ShoppingCartContext);
+    const { closeCart, cartItems, getCartSubtotal } =
+        useContext(ShoppingCartContext);
+    const subtotal = formatPrice(getCartSubtotal());
 
     return (
         <>
@@ -34,16 +36,7 @@ const Cart = ({ isOpen }) => {
                     <CartItem key={item.id} item={item} />
                 ))}
                 <h4 className="self-end text-3xl">
-                    Subtotal{' '}
-                    <span className="font-bold">
-                        {formatPrice(
-                            cartItems.reduce((total, item) => {
-                                return (
-                                    total + (item?.price || 0) * item.quantity
-                                );
-                            }, 0)
-                        )}
-                    </span>
+                    Subtotal <span className="font-bold">{subtotal}</span>
                 </h4>
                 {cartItems.length > 0 && (
                     <button

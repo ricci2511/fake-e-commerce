@@ -15,7 +15,7 @@ const Categories = ({ changeCategory }) => {
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
     return (
-        <nav className="flex w-full items-end justify-between border-b border-gray-300 text-center text-sm font-medium">
+        <nav className="flex w-full items-end justify-between overflow-x-auto overflow-y-hidden border-b border-gray-300 text-center text-sm font-medium">
             {categories.map((category) => (
                 <button
                     key={category.label}
@@ -32,7 +32,7 @@ const Categories = ({ changeCategory }) => {
                     {category.label}
                     {category.label === selectedCategory.label ? (
                         <motion.div
-                            className="absolute -bottom-px left-0 right-0 h-px bg-purple"
+                            className="absolute bottom-0 left-0 right-0 h-px bg-purple"
                             layoutId="underline"
                         />
                     ) : null}

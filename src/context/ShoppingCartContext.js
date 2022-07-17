@@ -19,6 +19,12 @@ export const ShoppingCartProvider = ({ children }) => {
         return cartItems.find((item) => item.id === id)?.quantity || 0;
     };
 
+    const getCartSubtotal = () => {
+        return cartItems.reduce((total, item) => {
+            return total + (item?.price || 0) * (item?.quantity || 0);
+        }, 0);
+    };
+
     const handleItemQuantityChange = (e, id) => {
         setCartItems((currentItems) => {
             return currentItems.map((item) => {
@@ -82,6 +88,7 @@ export const ShoppingCartProvider = ({ children }) => {
                 closeCart,
                 totalCartQuantity,
                 getItemQuantity,
+                getCartSubtotal,
                 handleItemQuantityChange,
                 increaseCartQuantity,
                 decreaseCartQuantity,
