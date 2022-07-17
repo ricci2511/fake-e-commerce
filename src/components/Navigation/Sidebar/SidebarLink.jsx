@@ -17,8 +17,12 @@ const SidebarLink = ({ path }) => {
             className={({ isActive }) =>
                 isActive ? selectedLinkClasses : linkClasses
             }
-            animate={{ x: [40, 0] }}
-            whileTap={{ scaleY: 0.9 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, x: [40, 0] }}
+            whileTap={{
+                scaleY: 0.9,
+                x: [0, 40],
+            }}
         >
             <LinkWrapper path={path} />
         </MotionLink>
