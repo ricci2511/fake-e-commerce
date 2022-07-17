@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 const About = () => {
     return (
         <AnimatedMain>
-            <h1 className="text-4xl">
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl">
                 About us or About{' '}
                 <strong className="border-b-4 border-b-purple">me?</strong>
             </h1>
@@ -38,13 +38,15 @@ const About = () => {
                 </p>
                 <p>
                     Even though I got here after learning and reading through
-                    great docs/articles, the only one responsible for my success
-                    in this industry is <strong>me</strong>.
+                    great docs/articles/videos by awesome content creators, the
+                    only one responsible for my success in this industry is{' '}
+                    <strong>me</strong>.
                 </p>
                 <div>
                     <p>
                         I built this project to show off some of the skills I
-                        learned recently and to pick up new ones. Built with:
+                        learned recently and to pick up new ones like Tailwind,
+                        React Router and Framer Motion. Built with:
                     </p>
                     <ul className="mt-6 space-y-3 px-8">
                         <li>
