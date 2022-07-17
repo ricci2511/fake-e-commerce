@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ShoppingCartContext } from 'context/ShoppingCartContext';
 import DarkOverlay from 'components/UI/DarkOverlay';
-import CartItem from './CartItem';
+import CartItem from 'components/Cart/CartItem';
 import { MdClose } from 'react-icons/md';
 import { FaSadTear } from 'react-icons/fa';
 import { formatPrice } from 'utils/formatPrice';

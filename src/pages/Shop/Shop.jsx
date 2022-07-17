@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Categories from './Categories';
-import ShopItem from './ShopItem';
+import Categories from 'pages/Shop/Categories';
+import ShopItem from 'pages/Shop/ShopItem';
 import AnimatedMain from 'components/UI/AnimatedMain';
 import ApiData from 'config/ApiData';
 import ErrorMessageWrapper from 'components/UI/ErrorMessageWrapper';

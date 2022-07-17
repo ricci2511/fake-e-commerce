@@ -1,7 +1,7 @@
 import React from 'react';
-import Hero from './Hero';
-import MainContent from './MainContent';
-import Features from './Features';
+import Hero from 'pages/Home/Hero';
+import MainContent from 'pages/Home/MainContent';
+import Features from 'pages/Home/Features';
 import AnimatedMain from 'components/UI/AnimatedMain';
 
 const Home = () => {

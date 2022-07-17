@@ -1,5 +1,5 @@
 import React from 'react';
-import HamburgerLinks from './HamburgerLinks';
+import HamburgerLinks from 'components/Navigation/HamburgerMenu/HamburgerLinks';
 import RightSideMenu from 'components/UI/RightSideMenu';
 import DarkOverlay from 'components/UI/DarkOverlay';
 
