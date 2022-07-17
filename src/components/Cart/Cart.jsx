@@ -51,7 +51,7 @@ const Cart = ({ isOpen }) => {
                     )}
                 </div>
             </RightSideMenu>
-            <DarkOverlay isOpen={isOpen} />
+            <DarkOverlay isOpen={isOpen} closeRightSideMenu={closeCart} />
         </>
     );
 };
