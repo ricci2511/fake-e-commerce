@@ -15,7 +15,7 @@ const Categories = ({ changeCategory }) => {
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
     return (
-        <nav className="flex w-full items-end justify-between overflow-x-auto overflow-y-hidden border-b border-gray-300 text-center text-sm font-medium">
+        <nav className="flex w-full items-end justify-between overflow-x-auto border-b border-gray-300 text-center text-sm font-medium">
             {categories.map((category) => (
                 <button
                     key={category.label}
