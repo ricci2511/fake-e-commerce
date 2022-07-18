@@ -5,13 +5,10 @@ const Sidebar = () => {
     return (
         <nav className="mt-12 hidden lg:block">
             <div className="sticky top-40 flex-col space-y-12 lg:flex">
-                <SidebarLink path="/fake-e-commerce" linkName="Home" />
-                <SidebarLink path="/fake-e-commerce/shop" linkName="Shop" />
-                <SidebarLink path="/fake-e-commerce/about" linkName="About" />
-                <SidebarLink
-                    path="/fake-e-commerce/contact"
-                    linkName="Contact"
-                />
+                <SidebarLink path="/" linkName="Home" />
+                <SidebarLink path="/shop" linkName="Shop" />
+                <SidebarLink path="/about" linkName="About" />
+                <SidebarLink path="/contact" linkName="Contact" />
             </div>
         </nav>
     );

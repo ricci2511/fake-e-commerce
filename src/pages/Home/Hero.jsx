@@ -12,10 +12,7 @@ const Hero = () => {
             </div>
             <div className="flex items-center justify-between gap-3 text-4xl font-bold md:text-6xl">
                 <h2 className="pr-2">GET</h2>
-                <Link
-                    to="/fake-e-commerce/shop"
-                    className="flex flex-1 items-center"
-                >
+                <Link to="/shop" className="flex flex-1 items-center">
                     <motion.button
                         className="w-full rounded-xl bg-purple py-4 px-6 text-center text-sm font-medium text-white md:text-lg"
                         whileHover={{ scale: 1.06 }}

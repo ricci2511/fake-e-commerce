@@ -11,18 +11,12 @@ const SidebarLink = ({ path, linkName }) => {
     // inject Framer Motion props to NavLink component to do some cool animations
     const MotionLink = motion(NavLink);
 
-    /**
-     * for isActive to work properly the 'end' boolean is crucial
-     * if end is not set to true it will always set the home path to active,
-     * since the shop and other routes are child routes of home
-     */
     return (
         <MotionLink
             to={path}
             className={({ isActive }) =>
                 isActive ? selectedLinkClasses : linkClasses
             }
-            end={true}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, x: [40, 0] }}
             whileTap={{

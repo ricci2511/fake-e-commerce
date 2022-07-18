@@ -18,15 +18,13 @@ const Main = () => {
     return (
         <AnimatePresence exitBeforeEnter initial={false}>
             <Routes location={location} key={location.pathname}>
-                <Route path="/fake-e-commerce">
-                    <Route index element={<Home />} />
-                    <Route path="shop">
-                        <Route index element={<Shop />} />
-                        <Route path=":itemId" element={<Item />} />
-                    </Route>
-                    <Route path="about" element={<About />} />
-                    <Route path="contact" element={<Contact />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/shop">
+                    <Route index element={<Shop />} />
+                    <Route path=":itemId" element={<Item />} />
                 </Route>
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
         </AnimatePresence>
