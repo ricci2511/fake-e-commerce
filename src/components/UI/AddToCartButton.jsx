@@ -13,7 +13,10 @@ const AddToCartButton = ({ id, title, image, price }) => {
                 backgroundColor: ['#ffffff', '#5C4EBD'],
                 color: ['rgb(0, 0, 0)', 'rgb(255, 255, 255)'],
             }}
-            whileTap={{ scale: 0.9 }}
+            whileTap={{
+                scale: 0.9,
+                transition: { type: 'spring', stiffness: 500 },
+            }}
             transition={{ duration: 0.25 }}
             onClick={() =>
                 increaseCartQuantity(id, {

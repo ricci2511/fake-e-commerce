@@ -7,6 +7,7 @@ import ErrorMessageWrapper from 'components/UI/ErrorMessageWrapper';
 import LoadingWrapper from 'components/UI/LoadingWrapper';
 import { formatPrice } from 'utils/formatPrice';
 import useFetch from 'hooks/useFetch';
+import PurchaseNowButton from 'components/UI/PurchaseNowButton';
 
 const Item = () => {
     const { itemId } = useParams();
@@ -34,11 +35,17 @@ const Item = () => {
                                 {title}
                             </h1>
                             <p className="max-w-[45ch]">{description}.</p>
-                            <div className="flex items-center gap-4 self-start">
-                                <p className="text-xl font-bold">
-                                    {formatPrice(price)}
-                                </p>
+                            <p className="text-xl font-bold">
+                                {formatPrice(price)}
+                            </p>
+                            <div className="flex flex-col gap-3">
                                 <AddToCartButton
+                                    id={parseInt(itemId)}
+                                    title={title}
+                                    image={image}
+                                    price={price}
+                                />
+                                <PurchaseNowButton
                                     id={parseInt(itemId)}
                                     title={title}
                                     image={image}
