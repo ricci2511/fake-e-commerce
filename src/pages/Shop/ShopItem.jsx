@@ -8,7 +8,7 @@ const ShopItem = ({ id, title, image, price }) => {
     return (
         <article className="flex flex-col rounded-2xl bg-white shadow-xl">
             <div className="mx-auto h-80 p-12">
-                <Link to={`/shop/${id}`}>
+                <Link to={`/fake-e-commerce/shop/${id}`}>
                     <motion.img
                         src={image}
                         alt={title}

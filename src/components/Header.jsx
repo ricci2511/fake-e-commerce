@@ -15,7 +15,7 @@ const Header = () => {
     return (
         <header className="sticky top-0 z-10 bg-lightPink shadow-lg">
             <div className="container mx-auto flex items-center justify-between p-4 lg:flex">
-                <Link to="/">
+                <Link to="/fake-e-commerce">
                     <div id="logo" className="flex items-center space-x-4">
                         <img src={logo} alt="logo" className="w-12" />
                         <h1 className="font-bold md:text-xl lg:text-2xl">

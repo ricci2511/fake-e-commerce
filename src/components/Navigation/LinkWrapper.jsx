@@ -4,11 +4,9 @@ import { FaShoppingBag } from 'react-icons/fa';
 import { FaInfoCircle } from 'react-icons/fa';
 import { BsChatSquareFill } from 'react-icons/bs';
 
-const LinkWrapper = ({ path }) => {
-    const pathName = path.split('/')[1].charAt(0).toUpperCase() + path.slice(2);
-
-    const getIcon = (pathName) => {
-        switch (pathName) {
+const LinkWrapper = ({ linkName }) => {
+    const getIcon = (linkName) => {
+        switch (linkName) {
             case 'Shop':
                 return <FaShoppingBag size={20} />;
             case 'About':
@@ -22,8 +20,8 @@ const LinkWrapper = ({ path }) => {
 
     return (
         <div className="flex items-center space-x-3">
-            {getIcon(pathName)}
-            <span>{path === '/' ? 'Home' : pathName}</span>
+            {getIcon(linkName)}
+            <span>{linkName}</span>
         </div>
     );
 };
