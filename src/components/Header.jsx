@@ -5,12 +5,17 @@ import HamburgerMenu from 'components/Navigation/HamburgerMenu';
 import { ShoppingCartContext } from 'context/ShoppingCartContext';
 import { Link } from 'react-router-dom';
 import { Divide as Hamburger } from 'hamburger-react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from 'firebase-config';
+import { FaUserAlt } from 'react-icons/fa';
 
 const Header = () => {
     const { openCart } = useContext(ShoppingCartContext);
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
     const handleOnHamburgerOpen = () =>
         setIsHamburgerOpen((prevState) => !prevState);
+
+    const [user] = useAuthState(auth);
 
     return (
         <header className="sticky top-0 z-10 bg-lightPink shadow-lg">
@@ -28,6 +33,11 @@ const Header = () => {
                 </h2>
                 {/* PLACEHOLDER FOR HAMBURGUER MENU */}
                 <div className="relative flex items-center space-x-6">
+                    <Link to={user ? '/account' : '/login'}>
+                        <button className="rounded-full bg-white p-4">
+                            {user ? 'Logged In!' : <FaUserAlt size={20} />}
+                        </button>
+                    </Link>
                     <div onClick={openCart}>
                         <ShoppingCartButton />
                     </div>
