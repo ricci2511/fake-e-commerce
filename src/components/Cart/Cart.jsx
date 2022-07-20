@@ -15,7 +15,7 @@ const Cart = ({ isOpen }) => {
     return (
         <>
             <RightSideMenu isOpen={isOpen} width="w-full sm:w-[30rem]">
-                <div className=" flex flex-col gap-16 p-12">
+                <div className=" flex flex-col gap-10 p-12 md:gap-12 lg:gap-16">
                     <button
                         aria-label="close"
                         className="absolute right-0 top-0 p-5"
@@ -23,7 +23,9 @@ const Cart = ({ isOpen }) => {
                     >
                         <MdClose size={40} />
                     </button>
-                    <h1 className="mt-8 text-5xl">Your cart</h1>
+                    <h1 className="mt-8 text-4xl font-bold md:text-5xl">
+                        Your cart
+                    </h1>
                     {cartItems.length < 1 && (
                         <div className="flex items-center gap-4 text-lg">
                             <span>It's so empty in here...</span>
@@ -33,7 +35,7 @@ const Cart = ({ isOpen }) => {
                     {cartItems.map((item) => (
                         <CartItem key={item.id} item={item} />
                     ))}
-                    <h4 className="self-end text-3xl">
+                    <h4 className="self-end text-2xl md:text-3xl">
                         Subtotal <span className="font-bold">{subtotal}</span>
                     </h4>
                     {cartItems.length > 0 && (

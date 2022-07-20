@@ -7,7 +7,7 @@ const PurchaseNowButton = ({ id, title, image, price }) => {
 
     return (
         <motion.button
-            className="bg-green-400 py-2 px-6"
+            className="bg-green-400 py-2 px-6 text-sm md:text-base"
             whileTap={{
                 scale: 0.9,
                 transition: { type: 'spring', stiffness: 500 },

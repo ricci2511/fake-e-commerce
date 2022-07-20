@@ -20,8 +20,10 @@ const ShopItem = ({ id, title, image, price }) => {
             </div>
             <div className="flex h-full flex-col gap-6 p-8">
                 <div className="flex h-full flex-col justify-end gap-4">
-                    <h4 className="font-medium">{title}</h4>
-                    <p className="text-lg font-bold">{formatPrice(price)}</p>
+                    <h4 className="text-sm font-medium md:text-base">
+                        {title}
+                    </h4>
+                    <p className="text-base font-bold">{formatPrice(price)}</p>
                 </div>
                 <AddToCartButton
                     id={id}

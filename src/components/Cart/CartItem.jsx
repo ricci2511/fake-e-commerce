@@ -28,7 +28,9 @@ const CartItem = ({ item }) => {
                 <img src={image} alt={title} />
             </section>
             <section className="mt-2 flex w-10/12 flex-col space-y-6">
-                <h3>{title}</h3>
+                <h3 className="text text-sm md:text-base xl:text-lg">
+                    {title}
+                </h3>
                 <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
                         <button

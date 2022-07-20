@@ -9,10 +9,10 @@ import { motion } from 'framer-motion';
 export const Contact = () => {
     return (
         <AnimatedMain>
-            <h1 className="text-center text-4xl">
+            <h1 className="text-center text-2xl md:text-3xl lg:text-4xl">
                 Want to contact me? Found any bugs? Want to collaborate?
             </h1>
-            <h3 className="text-center text-2xl font-bold">
+            <h3 className="text-center text-xl font-bold md:text-2xl">
                 Reach me on these platforms
             </h3>
             <div className="flex flex-col items-center justify-center gap-10 py-4 sm:flex-row sm:gap-16 md:gap-20">

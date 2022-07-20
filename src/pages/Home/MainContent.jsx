@@ -5,7 +5,7 @@ const MainContent = () => {
     return (
         <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-3 sm:space-y-0">
             <div className="space-y-4 text-center sm:w-1/2 sm:text-left">
-                <h3 className="text-4xl font-bold tracking-tight md:text-5xl xl:text-6xl">
+                <h3 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl xl:text-6xl">
                     Diverse <span className="text-purple">Collections</span>
                 </h3>
                 <p>

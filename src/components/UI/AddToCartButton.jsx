@@ -26,7 +26,7 @@ const AddToCartButton = ({ id, title, image, price }) => {
                 })
             }
         >
-            <div className="flex flex-row items-center justify-center space-x-3">
+            <div className="flex flex-row items-center justify-center space-x-3 text-sm md:text-base">
                 <FaCartPlus size={18} />
                 <span>Add to cart</span>
             </div>
