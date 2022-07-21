@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { ShoppingCartContext } from 'context/ShoppingCartContext';
 
 const ShoppingCartButton = () => {
-    const { totalCartQuantity } = useContext(ShoppingCartContext);
+    const { totalCartQuantity, openCart } = useContext(ShoppingCartContext);
 
     return (
         <motion.button
@@ -19,6 +19,7 @@ const ShoppingCartButton = () => {
                 type: 'spring',
                 stiffnes: 60,
             }}
+            onClick={openCart}
         >
             <FaShoppingCart size={20} />
             {totalCartQuantity > 0 && (

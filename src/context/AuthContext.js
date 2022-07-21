@@ -2,20 +2,20 @@ import { auth } from 'firebase-config';
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { createContext } from 'react';
 
-export const AuthContext = createContext();
+export const AuthContext = createContext({});
 
 export const AuthContextProvider = ({ children }) => {
-    const signIn = async () => {
+    const signInUser = async () => {
         const provider = new GoogleAuthProvider();
-        await signInWithPopup(auth, provider);
+        return await signInWithPopup(auth, provider);
     };
 
-    const signOut = () => {
+    const signOutUser = () => {
         signOut(auth);
     };
 
     return (
-        <AuthContext.Provider value={(signIn, signOut)}>
+        <AuthContext.Provider value={{ signInUser, signOutUser }}>
             {children}
         </AuthContext.Provider>
     );
