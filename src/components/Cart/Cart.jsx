@@ -6,6 +6,7 @@ import { MdClose } from 'react-icons/md';
 import { FaSadTear } from 'react-icons/fa';
 import { formatPrice } from 'utils/formatPrice';
 import RightSideMenu from 'components/UI/RightSideMenu';
+import { AnimatePresence } from 'framer-motion';
 
 const Cart = ({ isOpen }) => {
     const { closeCart, cartItems, getCartSubtotal } =
@@ -53,7 +54,9 @@ const Cart = ({ isOpen }) => {
                     )}
                 </div>
             </RightSideMenu>
-            <DarkOverlay isOpen={isOpen} closeRightSideMenu={closeCart} />
+            <AnimatePresence>
+                {isOpen && <DarkOverlay closeFocusedElement={closeCart} />}
+            </AnimatePresence>
         </>
     );
 };

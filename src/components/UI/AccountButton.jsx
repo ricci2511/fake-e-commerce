@@ -7,7 +7,6 @@ import { AnimatePresence } from 'framer-motion';
 
 const AccountButton = () => {
     const [user] = useAuthState(auth);
-    console.log(user);
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
     const handleOnDropDownOpen = () =>
         setIsDropDownOpen((prevState) => !prevState);
@@ -15,14 +14,16 @@ const AccountButton = () => {
     return (
         <div className="relative">
             <button
-                className="rounded-full bg-white p-4"
+                className={`${
+                    user ? '' : 'bg-white p-4'
+                } flex items-center rounded-full`}
                 onClick={handleOnDropDownOpen}
             >
                 {user ? (
                     <img
                         src={user.photoURL}
                         alt={user.displayName}
-                        className="w-14 rounded-full"
+                        className="w-12 rounded-full"
                     />
                 ) : (
                     <FaUserAlt size={20} />

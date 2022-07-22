@@ -8,11 +8,10 @@ const AccountDropDown = ({ user }) => {
 
     return (
         <motion.div
-            key="dropdown"
-            className="absolute right-0 mt-2 flex min-h-[15vh] w-60 flex-col items-center justify-center overflow-y-auto rounded-md bg-white shadow-md"
+            className="absolute right-0 mt-6 flex min-h-[15vh] w-60 flex-col items-center justify-center overflow-y-auto rounded-md bg-lightPink shadow-sm"
             initial={{ opacity: 0, y: '-80px' }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '-80px', transition: { duration: 0.2 } }}
+            exit={{ opacity: 0, y: '80px', transition: { duration: 0.2 } }}
         >
             {user ? (
                 <div>
