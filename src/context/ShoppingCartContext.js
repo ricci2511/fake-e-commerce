@@ -1,12 +1,91 @@
 import useLocalStorage from 'hooks/useLocalStorage';
-import { createContext, useState } from 'react';
-import Cart from '../components/Cart';
+import { createContext, useEffect, useState } from 'react';
+import Cart from 'components/Cart';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth, db } from 'firebase-config';
+import {
+    addDoc,
+    collection,
+    getDocs,
+    serverTimestamp,
+    doc,
+    updateDoc,
+    arrayUnion,
+    arrayRemove,
+    query,
+    where,
+} from 'firebase/firestore';
 
 export const ShoppingCartContext = createContext({});
 
 export const ShoppingCartProvider = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [cartItems, setCartItems] = useLocalStorage('shoppingCart', []);
+    const [cartItems, setCartItems] = useState([]);
+
+    const [user] = useAuthState(auth);
+    const [cartId, setCartId] = useState('');
+
+    useEffect(() => {
+        const loadDbItems = async () => {
+            if (user) {
+                const q = query(
+                    collection(db, 'carts'),
+                    where('owner', '==', user.uid)
+                );
+                const querySnapshot = await getDocs(q);
+                // new signed up user
+                if (querySnapshot.empty) {
+                    return await addDoc(collection(db, 'carts'), {
+                        crated: serverTimestamp(),
+                        items: [],
+                        owner: user.uid,
+                    });
+                }
+                return querySnapshot.forEach((doc) => {
+                    setCartItems(doc.data().items);
+                    setCartId(doc.id);
+                });
+            } else {
+                setCartItems([]);
+            }
+        };
+
+        loadDbItems();
+    }, [user]);
+
+    const addItemToDb = async (item) => {
+        if (!user) return;
+        const docRef = doc(db, 'carts', cartId);
+        await updateDoc(docRef, {
+            items: arrayUnion(item),
+        });
+    };
+
+    const removeItemFromDb = async (currentItems, itemId) => {
+        if (!user) return;
+        const docRef = doc(db, 'carts', cartId);
+        const itemToRemove = currentItems.find((item) => item.id === itemId);
+        await updateDoc(docRef, {
+            items: arrayRemove(itemToRemove),
+        });
+    };
+
+    const updateDbItem = async (itemId, item) => {
+        const q = query(
+            collection(db, 'carts'),
+            where('owner', '==', user.uid)
+        );
+        const queryData = await getDocs(q);
+        let itemsRef = [];
+        queryData.forEach((doc) => (itemsRef = doc.data().items));
+        const itemToUpdate = itemsRef.find((item) => item.id === itemId);
+        itemsRef[itemsRef.indexOf(itemToUpdate)] = item;
+
+        const docRef = doc(db, 'carts', cartId);
+        await updateDoc(docRef, {
+            items: itemsRef,
+        });
+    };
 
     const openCart = () => setIsOpen(true);
     const closeCart = () => setIsOpen(false);
@@ -46,16 +125,22 @@ export const ShoppingCartProvider = ({ children }) => {
             if (currentItems.find((item) => item.id === id)) {
                 return currentItems.map((item) => {
                     if (item.id === id) {
-                        return { ...item, quantity: item.quantity + 1 };
+                        const newItem = {
+                            ...item,
+                            quantity: item.quantity + 1,
+                        };
+                        updateDbItem(id, newItem);
+                        return newItem;
                     }
 
                     return item;
                 });
             }
 
-            // in case it is a new item we add the necessary properties
             const { title, image, price } = item;
-            return [...currentItems, { id, title, image, price, quantity: 1 }];
+            const newItem = { id, title, image, price, quantity: 1 };
+            addItemToDb(newItem);
+            return [...currentItems, newItem];
         });
     };
 
@@ -71,14 +156,16 @@ export const ShoppingCartProvider = ({ children }) => {
                 });
             }
 
+            removeItemFromDb(currentItems, id);
             return currentItems.filter((item) => item.id !== id);
         });
     };
 
     const removeCartItem = (id) => {
-        setCartItems((currentItems) =>
-            currentItems.filter((item) => item.id !== id)
-        );
+        setCartItems((currentItems) => {
+            removeItemFromDb(currentItems, id);
+            return currentItems.filter((item) => item.id !== id);
+        });
     };
 
     return (
