@@ -1,50 +1,31 @@
-import useLocalStorage from 'hooks/useLocalStorage';
 import { createContext, useEffect, useState } from 'react';
 import Cart from 'components/Cart';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, db } from 'firebase-config';
+import { auth } from 'firebase-config';
 import {
-    addDoc,
-    collection,
-    getDocs,
-    serverTimestamp,
-    doc,
-    updateDoc,
-    arrayUnion,
-    arrayRemove,
-    query,
-    where,
-} from 'firebase/firestore';
+    queryUserData,
+    setUsersRef,
+    addItemToDb,
+    removeItemFromDb,
+    updateDbItem,
+} from 'utils/firestoreFunctions';
+import FloatingErrorAlert from 'components/UI/FloatingErrorAlert';
 
 export const ShoppingCartContext = createContext({});
 
 export const ShoppingCartProvider = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [cartItems, setCartItems] = useState([]);
-
+    const [error, setError] = useState(null);
     const [user] = useAuthState(auth);
-    const [cartId, setCartId] = useState('');
 
     useEffect(() => {
         const loadDbItems = async () => {
             if (user) {
-                const q = query(
-                    collection(db, 'carts'),
-                    where('owner', '==', user.uid)
-                );
-                const querySnapshot = await getDocs(q);
-                // new signed up user
-                if (querySnapshot.empty) {
-                    return await addDoc(collection(db, 'carts'), {
-                        crated: serverTimestamp(),
-                        items: [],
-                        owner: user.uid,
-                    });
-                }
-                return querySnapshot.forEach((doc) => {
-                    setCartItems(doc.data().items);
-                    setCartId(doc.id);
-                });
+                const querySnapshot = await queryUserData(user);
+                const userData = querySnapshot.docs[0].data();
+                setCartItems(userData.cartItems);
+                setUsersRef(querySnapshot.docs[0].id);
             } else {
                 setCartItems([]);
             }
@@ -53,39 +34,7 @@ export const ShoppingCartProvider = ({ children }) => {
         loadDbItems();
     }, [user]);
 
-    const addItemToDb = async (item) => {
-        if (!user) return;
-        const docRef = doc(db, 'carts', cartId);
-        await updateDoc(docRef, {
-            items: arrayUnion(item),
-        });
-    };
-
-    const removeItemFromDb = async (currentItems, itemId) => {
-        if (!user) return;
-        const docRef = doc(db, 'carts', cartId);
-        const itemToRemove = currentItems.find((item) => item.id === itemId);
-        await updateDoc(docRef, {
-            items: arrayRemove(itemToRemove),
-        });
-    };
-
-    const updateDbItem = async (itemId, item) => {
-        const q = query(
-            collection(db, 'carts'),
-            where('owner', '==', user.uid)
-        );
-        const queryData = await getDocs(q);
-        let itemsRef = [];
-        queryData.forEach((doc) => (itemsRef = doc.data().items));
-        const itemToUpdate = itemsRef.find((item) => item.id === itemId);
-        itemsRef[itemsRef.indexOf(itemToUpdate)] = item;
-
-        const docRef = doc(db, 'carts', cartId);
-        await updateDoc(docRef, {
-            items: itemsRef,
-        });
-    };
+    const resetError = () => setError(null);
 
     const openCart = () => setIsOpen(true);
     const closeCart = () => setIsOpen(false);
@@ -111,7 +60,12 @@ export const ShoppingCartProvider = ({ children }) => {
                 if (item.id === id) {
                     const quantityValue =
                         parseInt(e.target.value) || item.quantity;
-                    return { ...item, quantity: quantityValue };
+                    const newItem = { ...item, quantity: quantityValue };
+                    if (user)
+                        updateDbItem(user, id, newItem).catch((err) =>
+                            setError(err.message)
+                        );
+                    return newItem;
                 }
 
                 return item;
@@ -129,7 +83,10 @@ export const ShoppingCartProvider = ({ children }) => {
                             ...item,
                             quantity: item.quantity + 1,
                         };
-                        updateDbItem(id, newItem);
+                        if (user)
+                            updateDbItem(user, id, newItem).catch((err) =>
+                                setError(err.message)
+                            );
                         return newItem;
                     }
 
@@ -139,7 +96,8 @@ export const ShoppingCartProvider = ({ children }) => {
 
             const { title, image, price } = item;
             const newItem = { id, title, image, price, quantity: 1 };
-            addItemToDb(newItem);
+            if (user)
+                addItemToDb(newItem).catch((err) => setError(err.message));
             return [...currentItems, newItem];
         });
     };
@@ -149,21 +107,43 @@ export const ShoppingCartProvider = ({ children }) => {
             if (currentItems.find((item) => item.id === id)?.quantity > 1) {
                 return currentItems.map((item) => {
                     if (item.id === id) {
-                        return { ...item, quantity: item.quantity - 1 };
+                        const newItem = {
+                            ...item,
+                            quantity: item.quantity - 1,
+                        };
+                        if (user)
+                            updateDbItem(user, id, newItem).catch((err) =>
+                                setError(err.message)
+                            );
+                        return newItem;
                     }
 
                     return item;
                 });
             }
 
-            removeItemFromDb(currentItems, id);
+            if (user) {
+                const itemToRemove = currentItems.find(
+                    (item) => item.id === id
+                );
+                removeItemFromDb(itemToRemove).catch((err) =>
+                    setError(err.message)
+                );
+            }
             return currentItems.filter((item) => item.id !== id);
         });
     };
 
     const removeCartItem = (id) => {
         setCartItems((currentItems) => {
-            removeItemFromDb(currentItems, id);
+            if (user) {
+                const itemToRemove = currentItems.find(
+                    (item) => item.id === id
+                );
+                removeItemFromDb(itemToRemove).catch((err) =>
+                    setError(err.message)
+                );
+            }
             return currentItems.filter((item) => item.id !== id);
         });
     };
@@ -185,6 +165,7 @@ export const ShoppingCartProvider = ({ children }) => {
         >
             {children}
             <Cart isOpen={isOpen} />
+            <FloatingErrorAlert error={error} closeError={resetError} />
         </ShoppingCartContext.Provider>
     );
 };
