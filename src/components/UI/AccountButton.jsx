@@ -30,7 +30,18 @@ const AccountButton = () => {
                 )}
             </button>
             <AnimatePresence>
-                {isDropDownOpen && <AccountDropDown user={user} />}
+                {isDropDownOpen && (
+                    <>
+                        <AccountDropDown
+                            user={user}
+                            closeDropDown={handleOnDropDownOpen}
+                        />
+                        <div
+                            className="fixed top-0 left-0 z-20 h-full w-full bg-black opacity-70"
+                            onClick={handleOnDropDownOpen}
+                        ></div>
+                    </>
+                )}
             </AnimatePresence>
         </div>
     );

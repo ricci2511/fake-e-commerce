@@ -25,7 +25,7 @@ const Header = () => {
                 <h2 className="hidden text-2xl font-light lg:block">
                     Everything you could ever want
                 </h2>
-                <div className="relative flex items-center space-x-6">
+                <div className="flex items-center space-x-6">
                     <AccountButton />
                     <ShoppingCartButton />
                     <div className="z-40 space-y-6 lg:hidden lg:space-y-0">

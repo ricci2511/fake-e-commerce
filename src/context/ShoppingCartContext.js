@@ -10,6 +10,7 @@ import {
     updateDbItem,
 } from 'utils/firestoreFunctions';
 import FloatingErrorAlert from 'components/UI/FloatingErrorAlert';
+import { AnimatePresence } from 'framer-motion';
 
 export const ShoppingCartContext = createContext({});
 
@@ -165,7 +166,11 @@ export const ShoppingCartProvider = ({ children }) => {
         >
             {children}
             <Cart isOpen={isOpen} />
-            <FloatingErrorAlert error={error} closeError={resetError} />
+            <AnimatePresence>
+                {error && (
+                    <FloatingErrorAlert error={error} closeError={resetError} />
+                )}
+            </AnimatePresence>
         </ShoppingCartContext.Provider>
     );
 };
