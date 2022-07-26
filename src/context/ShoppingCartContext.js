@@ -8,6 +8,7 @@ import {
     addItemToDb,
     removeItemFromDb,
     updateDbItem,
+    getUsersDocId,
 } from 'utils/firestoreFunctions';
 import FloatingErrorAlert from 'components/UI/FloatingErrorAlert';
 
@@ -26,9 +27,14 @@ export const ShoppingCartProvider = ({ children }) => {
                     const querySnapshot = await queryUserData(user).catch(
                         (err) => setError(err.message)
                     );
+                    const usersRef = await getUsersDocId();
+                    setUsersRef(usersRef);
+                    if (querySnapshot.empty) {
+                        setCartItems([]);
+                        return;
+                    }
                     const userData = querySnapshot.docs[0].data();
                     setCartItems(userData.cartItems);
-                    setUsersRef(querySnapshot.docs[0].id);
                 } else {
                     setCartItems([]);
                 }

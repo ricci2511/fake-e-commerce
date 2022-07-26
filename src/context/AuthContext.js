@@ -1,6 +1,6 @@
 import FloatingErrorAlert from 'components/UI/FloatingErrorAlert';
 import { auth, db } from 'firebase-config';
-import { GoogleAuthProvider, signInWithRedirect, signOut } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { createContext, useState } from 'react';
 import { queryUserData } from 'utils/firestoreFunctions';
@@ -14,7 +14,7 @@ export const AuthContextProvider = ({ children }) => {
     const signInUser = async () => {
         try {
             const provider = new GoogleAuthProvider();
-            const response = await signInWithRedirect(auth, provider);
+            const response = await signInWithPopup(auth, provider);
             const user = response.user;
             const isNewUser = (await queryUserData(user)).empty;
             if (isNewUser) {
