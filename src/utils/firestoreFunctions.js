@@ -22,10 +22,6 @@ export const setUsersRef = (docId) => {
     usersRef = doc(db, 'users', docId);
 };
 
-export const getUsersDocId = async () => {
-    return (await getDocs(collection(db, 'users'))).docs[0].id;
-};
-
 export const queryUserData = async (user) => {
     try {
         const q = query(collection(db, 'users'), where('uid', '==', user.uid));
