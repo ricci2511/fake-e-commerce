@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import logo from 'assets/logo.svg';
-import ShoppingCartButton from 'components/UI/ShoppingCartButton';
+import ShoppingCartButton from 'components/UI/Buttons/ShoppingCartButton';
 import HamburgerMenu from 'components/Navigation/HamburgerMenu';
 import { Link } from 'react-router-dom';
 import { Divide as Hamburger } from 'hamburger-react';
-import AccountButton from './UI/AccountButton';
+import AccountButton from 'components/UI/Buttons/AccountButton';
 
 const Header = () => {
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);

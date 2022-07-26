@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { ShoppingCartContext } from 'context/ShoppingCartContext';
-import DarkOverlay from 'components/UI/DarkOverlay';
 import CartItem from 'components/Cart/CartItem';
 import { MdClose } from 'react-icons/md';
 import { FaSadTear } from 'react-icons/fa';
 import { formatPrice } from 'utils/formatPrice';
 import RightSideMenu from 'components/UI/RightSideMenu';
+import LeftSlideInBackdrop from 'components/UI/DarkBackdrops/LeftSlideInBackdrop';
 
 const Cart = ({ isOpen }) => {
     const { closeCart, cartItems, getCartSubtotal } =
@@ -53,7 +53,10 @@ const Cart = ({ isOpen }) => {
                     )}
                 </div>
             </RightSideMenu>
-            <DarkOverlay isOpen={isOpen} closeFocusedElement={closeCart} />
+            <LeftSlideInBackdrop
+                isOpen={isOpen}
+                closeFocusedElement={closeCart}
+            />
         </>
     );
 };

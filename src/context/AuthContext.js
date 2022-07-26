@@ -2,7 +2,6 @@ import FloatingErrorAlert from 'components/UI/FloatingErrorAlert';
 import { auth, db } from 'firebase-config';
 import { GoogleAuthProvider, signInWithRedirect, signOut } from 'firebase/auth';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { AnimatePresence } from 'framer-motion';
 import { createContext, useState } from 'react';
 import { queryUserData } from 'utils/firestoreFunctions';
 
@@ -37,11 +36,7 @@ export const AuthContextProvider = ({ children }) => {
     return (
         <AuthContext.Provider value={{ signInUser, signOutUser }}>
             {children}
-            <AnimatePresence>
-                {error && (
-                    <FloatingErrorAlert error={error} closeError={resetError} />
-                )}
-            </AnimatePresence>
+            <FloatingErrorAlert error={error} closeError={resetError} />
         </AuthContext.Provider>
     );
 };

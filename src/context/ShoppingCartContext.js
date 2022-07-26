@@ -21,15 +21,19 @@ export const ShoppingCartProvider = ({ children }) => {
 
     useEffect(() => {
         const loadDbItems = async () => {
-            if (user) {
-                const querySnapshot = await queryUserData(user).catch((err) =>
-                    setError(err.message)
-                );
-                const userData = querySnapshot.docs[0].data();
-                setCartItems(userData.cartItems);
-                setUsersRef(querySnapshot.docs[0].id);
-            } else {
-                setCartItems([]);
+            try {
+                if (user) {
+                    const querySnapshot = await queryUserData(user).catch(
+                        (err) => setError(err.message)
+                    );
+                    const userData = querySnapshot.docs[0].data();
+                    setCartItems(userData.cartItems);
+                    setUsersRef(querySnapshot.docs[0].id);
+                } else {
+                    setCartItems([]);
+                }
+            } catch (err) {
+                setError(err.message);
             }
         };
 
@@ -37,7 +41,6 @@ export const ShoppingCartProvider = ({ children }) => {
     }, [user]);
 
     const resetError = () => setError(null);
-
     const openCart = () => setIsOpen(true);
     const closeCart = () => setIsOpen(false);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import AnimatedMain from 'components/UI/AnimatedMain';
 import { FaReact } from 'react-icons/fa';
-import { SiTailwindcss, SiFramer } from 'react-icons/si';
+import { SiTailwindcss, SiFramer, SiFirebase } from 'react-icons/si';
 
 const About = () => {
     return (
@@ -45,9 +45,9 @@ const About = () => {
                     <p>
                         I built this project to show off some of the skills I
                         learned recently and to pick up new ones like Tailwind,
-                        React Router and Framer Motion. Built with:
+                        React Router, Framer Motion and Firebase. Built with:
                     </p>
-                    <ul className="mt-6 space-y-3 px-8">
+                    <ul className="mt-6 space-y-4 px-8">
                         <li>
                             <div className="flex items-center gap-2">
                                 <FaReact color="#61DBFB" size={30} />
@@ -86,6 +86,20 @@ const About = () => {
                                         rel="noreferrer"
                                     >
                                         Framer Motion
+                                    </a>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="flex items-center gap-2">
+                                <SiFirebase color="#FFA000" size={30} />
+                                <span>
+                                    <a
+                                        href="https://firebase.google.com/"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        Firebase
                                     </a>
                                 </span>
                             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import AddToCartButton from 'components/UI/AddToCartButton';
+import AddToCartButton from 'components/UI/Buttons/AddToCartButton';
 import { formatPrice } from 'utils/formatPrice';
 
 const ShopItem = ({ id, title, image, price }) => {

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from 'firebase-config';
 import { FaUserAlt } from 'react-icons/fa';
-import AccountDropDown from './AccountDropDown';
-import { AnimatePresence } from 'framer-motion';
+import AccountDropDown from 'components/UI/AccountDropDown';
+import FadeInBackdrop from 'components/UI/DarkBackdrops/FadeInBackdrop';
 
 const AccountButton = () => {
     const [user] = useAuthState(auth);
@@ -29,20 +29,15 @@ const AccountButton = () => {
                     <FaUserAlt size={20} />
                 )}
             </button>
-            <AnimatePresence>
-                {isDropDownOpen && (
-                    <>
-                        <AccountDropDown
-                            user={user}
-                            closeDropDown={handleOnDropDownOpen}
-                        />
-                        <div
-                            className="fixed top-0 left-0 z-20 h-full w-full bg-black opacity-70"
-                            onClick={handleOnDropDownOpen}
-                        ></div>
-                    </>
-                )}
-            </AnimatePresence>
+            <AccountDropDown
+                isOpen={isDropDownOpen}
+                user={user}
+                closeDropDown={handleOnDropDownOpen}
+            />
+            <FadeInBackdrop
+                isOpen={isDropDownOpen}
+                closeFocusedElement={handleOnDropDownOpen}
+            />
         </div>
     );
 };
