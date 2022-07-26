@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "fake-e-commerce-develop",
+    "dev": "fake-e-commerce-develop",
+    "prod": "fake-e-commerce-prod"
+  },
+  "targets": {},
+  "etags": {}
+}

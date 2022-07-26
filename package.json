@@ -22,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy:dev": "env-cmd -f .env.development.local npm run build && firebase deploy -P dev",
+    "deploy:prod": "env-cmd -f .env.production.local npm run build && firebase deploy -P prod"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +46,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
+    "env-cmd": "^10.1.0",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.12",
