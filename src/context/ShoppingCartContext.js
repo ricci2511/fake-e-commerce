@@ -8,7 +8,6 @@ import {
     addItemToDb,
     removeItemFromDb,
     updateDbItem,
-    getUsersDocId,
 } from 'utils/firestoreFunctions';
 import FloatingErrorAlert from 'components/UI/FloatingErrorAlert';
 
@@ -27,12 +26,17 @@ export const ShoppingCartProvider = ({ children }) => {
                     const querySnapshot = await queryUserData(user).catch(
                         (err) => setError(err.message)
                     );
-                    const usersRef = await getUsersDocId();
-                    setUsersRef(usersRef);
+                    /**
+                     * After a new user signs in a user document is created.
+                     * This useEffect fires when a user signs in, so it runs before the user document is created.
+                     * By running the function again we ensure that the user document exists.
+                     */
                     if (querySnapshot.empty) {
-                        setCartItems([]);
+                        loadDbItems();
                         return;
                     }
+                    const usersRef = querySnapshot.docs[0].id;
+                    setUsersRef(usersRef);
                     const userData = querySnapshot.docs[0].data();
                     setCartItems(userData.cartItems);
                 } else {
