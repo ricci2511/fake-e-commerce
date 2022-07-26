@@ -10,7 +10,6 @@ import {
     updateDbItem,
 } from 'utils/firestoreFunctions';
 import FloatingErrorAlert from 'components/UI/FloatingErrorAlert';
-import { AnimatePresence } from 'framer-motion';
 
 export const ShoppingCartContext = createContext({});
 
@@ -23,7 +22,9 @@ export const ShoppingCartProvider = ({ children }) => {
     useEffect(() => {
         const loadDbItems = async () => {
             if (user) {
-                const querySnapshot = await queryUserData(user);
+                const querySnapshot = await queryUserData(user).catch((err) =>
+                    setError(err.message)
+                );
                 const userData = querySnapshot.docs[0].data();
                 setCartItems(userData.cartItems);
                 setUsersRef(querySnapshot.docs[0].id);
@@ -166,11 +167,7 @@ export const ShoppingCartProvider = ({ children }) => {
         >
             {children}
             <Cart isOpen={isOpen} />
-            <AnimatePresence>
-                {error && (
-                    <FloatingErrorAlert error={error} closeError={resetError} />
-                )}
-            </AnimatePresence>
+            <FloatingErrorAlert error={error} closeError={resetError} />
         </ShoppingCartContext.Provider>
     );
 };

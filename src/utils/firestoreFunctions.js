@@ -10,6 +10,13 @@ import {
     where,
 } from 'firebase/firestore';
 
+const DB_ERROR_MESSAGES = {
+    query: 'Could not get your cart items from the database',
+    add: 'Could not add item to database',
+    remove: 'Could not remove item from database',
+    update: 'Could not update item in database',
+};
+
 let usersRef = null;
 export const setUsersRef = (docId) => {
     usersRef = doc(db, 'users', docId);
@@ -20,7 +27,7 @@ export const queryUserData = async (user) => {
         const q = query(collection(db, 'users'), where('uid', '==', user.uid));
         return await getDocs(q);
     } catch {
-        throw new Error('Could not get any cart items from the database');
+        throw new Error(DB_ERROR_MESSAGES.query);
     }
 };
 
@@ -30,7 +37,7 @@ export const addItemToDb = async (item) => {
             cartItems: arrayUnion(item),
         });
     } catch {
-        throw new Error('Could not add item to database');
+        throw new Error(DB_ERROR_MESSAGES.add);
     }
 };
 
@@ -40,7 +47,7 @@ export const removeItemFromDb = async (itemToRemove) => {
             cartItems: arrayRemove(itemToRemove),
         });
     } catch {
-        throw new Error('Could not remove item from database');
+        throw new Error(DB_ERROR_MESSAGES.remove);
     }
 };
 
@@ -58,6 +65,6 @@ export const updateDbItem = async (user, itemId, item) => {
             cartItems: itemsRef,
         });
     } catch {
-        throw new Error('Could not update database entry');
+        throw new Error(DB_ERROR_MESSAGES.update);
     }
 };
