@@ -1,13 +1,52 @@
-import useLocalStorage from 'hooks/useLocalStorage';
-import { createContext, useState } from 'react';
-import Cart from '../components/Cart';
+import { createContext, useEffect, useState } from 'react';
+import Cart from 'components/Cart';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from 'firebase-config';
+import {
+    queryUserData,
+    setUsersRef,
+    addItemToDb,
+    removeItemFromDb,
+    updateDbItem,
+    getUsersDocId,
+} from 'utils/firestoreFunctions';
+import FloatingErrorAlert from 'components/UI/FloatingErrorAlert';
 
 export const ShoppingCartContext = createContext({});
 
 export const ShoppingCartProvider = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [cartItems, setCartItems] = useLocalStorage('shoppingCart', []);
+    const [cartItems, setCartItems] = useState([]);
+    const [error, setError] = useState(null);
+    const [user] = useAuthState(auth);
 
+    useEffect(() => {
+        const loadDbItems = async () => {
+            try {
+                if (user) {
+                    const querySnapshot = await queryUserData(user).catch(
+                        (err) => setError(err.message)
+                    );
+                    const usersRef = await getUsersDocId();
+                    setUsersRef(usersRef);
+                    if (querySnapshot.empty) {
+                        setCartItems([]);
+                        return;
+                    }
+                    const userData = querySnapshot.docs[0].data();
+                    setCartItems(userData.cartItems);
+                } else {
+                    setCartItems([]);
+                }
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
+        loadDbItems();
+    }, [user]);
+
+    const resetError = () => setError(null);
     const openCart = () => setIsOpen(true);
     const closeCart = () => setIsOpen(false);
 
@@ -32,7 +71,12 @@ export const ShoppingCartProvider = ({ children }) => {
                 if (item.id === id) {
                     const quantityValue =
                         parseInt(e.target.value) || item.quantity;
-                    return { ...item, quantity: quantityValue };
+                    const newItem = { ...item, quantity: quantityValue };
+                    if (user)
+                        updateDbItem(user, id, newItem).catch((err) =>
+                            setError(err.message)
+                        );
+                    return newItem;
                 }
 
                 return item;
@@ -46,16 +90,26 @@ export const ShoppingCartProvider = ({ children }) => {
             if (currentItems.find((item) => item.id === id)) {
                 return currentItems.map((item) => {
                     if (item.id === id) {
-                        return { ...item, quantity: item.quantity + 1 };
+                        const newItem = {
+                            ...item,
+                            quantity: item.quantity + 1,
+                        };
+                        if (user)
+                            updateDbItem(user, id, newItem).catch((err) =>
+                                setError(err.message)
+                            );
+                        return newItem;
                     }
 
                     return item;
                 });
             }
 
-            // in case it is a new item we add the necessary properties
             const { title, image, price } = item;
-            return [...currentItems, { id, title, image, price, quantity: 1 }];
+            const newItem = { id, title, image, price, quantity: 1 };
+            if (user)
+                addItemToDb(newItem).catch((err) => setError(err.message));
+            return [...currentItems, newItem];
         });
     };
 
@@ -64,21 +118,45 @@ export const ShoppingCartProvider = ({ children }) => {
             if (currentItems.find((item) => item.id === id)?.quantity > 1) {
                 return currentItems.map((item) => {
                     if (item.id === id) {
-                        return { ...item, quantity: item.quantity - 1 };
+                        const newItem = {
+                            ...item,
+                            quantity: item.quantity - 1,
+                        };
+                        if (user)
+                            updateDbItem(user, id, newItem).catch((err) =>
+                                setError(err.message)
+                            );
+                        return newItem;
                     }
 
                     return item;
                 });
             }
 
+            if (user) {
+                const itemToRemove = currentItems.find(
+                    (item) => item.id === id
+                );
+                removeItemFromDb(itemToRemove).catch((err) =>
+                    setError(err.message)
+                );
+            }
             return currentItems.filter((item) => item.id !== id);
         });
     };
 
     const removeCartItem = (id) => {
-        setCartItems((currentItems) =>
-            currentItems.filter((item) => item.id !== id)
-        );
+        setCartItems((currentItems) => {
+            if (user) {
+                const itemToRemove = currentItems.find(
+                    (item) => item.id === id
+                );
+                removeItemFromDb(itemToRemove).catch((err) =>
+                    setError(err.message)
+                );
+            }
+            return currentItems.filter((item) => item.id !== id);
+        });
     };
 
     return (
@@ -98,6 +176,7 @@ export const ShoppingCartProvider = ({ children }) => {
         >
             {children}
             <Cart isOpen={isOpen} />
+            <FloatingErrorAlert error={error} closeError={resetError} />
         </ShoppingCartContext.Provider>
     );
 };

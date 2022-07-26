@@ -2,12 +2,12 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import AnimatedMain from 'components/UI/AnimatedMain';
 import ApiData from 'config/ApiData';
-import AddToCartButton from 'components/UI/AddToCartButton';
+import AddToCartButton from 'components/UI/Buttons/AddToCartButton';
 import ErrorMessageWrapper from 'components/UI/ErrorMessageWrapper';
 import LoadingWrapper from 'components/UI/LoadingWrapper';
 import { formatPrice } from 'utils/formatPrice';
 import useFetch from 'hooks/useFetch';
-import PurchaseNowButton from 'components/UI/PurchaseNowButton';
+import PurchaseNowButton from 'components/UI/Buttons/PurchaseNowButton';
 
 const Item = () => {
     const { itemId } = useParams();

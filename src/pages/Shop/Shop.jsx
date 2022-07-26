@@ -19,7 +19,7 @@ export const Shop = () => {
             {isLoading && <LoadingWrapper />}
             {error && <ErrorMessageWrapper error={error} />}
             <section className="grid w-full grid-flow-row grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-                {category !== ''
+                {category
                     ? data
                           .filter((item) => item.category === category)
                           .map((item) => <ShopItem key={item.id} {...item} />)

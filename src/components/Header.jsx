@@ -1,13 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import logo from 'assets/logo.svg';
-import ShoppingCartButton from 'components/UI/ShoppingCartButton';
+import ShoppingCartButton from 'components/UI/Buttons/ShoppingCartButton';
 import HamburgerMenu from 'components/Navigation/HamburgerMenu';
-import { ShoppingCartContext } from 'context/ShoppingCartContext';
 import { Link } from 'react-router-dom';
 import { Divide as Hamburger } from 'hamburger-react';
+import AccountButton from 'components/UI/Buttons/AccountButton';
 
 const Header = () => {
-    const { openCart } = useContext(ShoppingCartContext);
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
     const handleOnHamburgerOpen = () =>
         setIsHamburgerOpen((prevState) => !prevState);
@@ -26,11 +25,9 @@ const Header = () => {
                 <h2 className="hidden text-2xl font-light lg:block">
                     Everything you could ever want
                 </h2>
-                {/* PLACEHOLDER FOR HAMBURGUER MENU */}
-                <div className="relative flex items-center space-x-6">
-                    <div onClick={openCart}>
-                        <ShoppingCartButton />
-                    </div>
+                <div className="flex items-center space-x-6">
+                    <AccountButton />
+                    <ShoppingCartButton />
                     <div className="z-40 space-y-6 lg:hidden lg:space-y-0">
                         <Hamburger
                             toggled={isHamburgerOpen}

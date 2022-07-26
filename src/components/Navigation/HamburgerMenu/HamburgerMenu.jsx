@@ -1,7 +1,7 @@
 import React from 'react';
 import HamburgerLinks from 'components/Navigation/HamburgerMenu/HamburgerLinks';
 import RightSideMenu from 'components/UI/RightSideMenu';
-import DarkOverlay from 'components/UI/DarkOverlay';
+import LeftSlideInBackdrop from 'components/UI/DarkBackdrops/LeftSlideInBackdrop';
 
 const HamburgerMenu = ({ isOpen, changeIsOpen }) => {
     return (
@@ -9,7 +9,10 @@ const HamburgerMenu = ({ isOpen, changeIsOpen }) => {
             <RightSideMenu isOpen={isOpen} width="w-72">
                 <HamburgerLinks changeIsOpen={changeIsOpen} />
             </RightSideMenu>
-            <DarkOverlay isOpen={isOpen} closeRightSideMenu={changeIsOpen} />
+            <LeftSlideInBackdrop
+                isOpen={isOpen}
+                closeFocusedElement={changeIsOpen}
+            />
         </>
     );
 };
