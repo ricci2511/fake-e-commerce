@@ -16,7 +16,7 @@ const Header = () => {
             <div className="container mx-auto flex items-center justify-between p-4 lg:flex">
                 <Link to="/">
                     <div id="logo" className="flex items-center space-x-4">
-                        <img src={logo} alt="logo" className="w-12" />
+                        <img src={logo} alt="logo" className="w-10 sm:w-12" />
                         <h1 className="font-bold md:text-xl lg:text-2xl">
                             Fake E-Commerce
                         </h1>
@@ -25,7 +25,7 @@ const Header = () => {
                 <h2 className="hidden text-2xl font-light lg:block">
                     Everything you could ever want
                 </h2>
-                <div className="flex items-center space-x-6">
+                <div className="flex items-center space-x-4 sm:space-x-6">
                     <AccountButton />
                     <ShoppingCartButton />
                     <div className="z-40 space-y-6 lg:hidden lg:space-y-0">

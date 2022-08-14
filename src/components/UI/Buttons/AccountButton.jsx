@@ -15,7 +15,7 @@ const AccountButton = () => {
         <div className="relative">
             <button
                 className={`${
-                    user ? '' : 'bg-white p-4'
+                    user ? '' : 'bg-white p-3 sm:p-4'
                 } flex items-center rounded-full`}
                 onClick={handleOnDropDownOpen}
             >
@@ -23,7 +23,7 @@ const AccountButton = () => {
                     <img
                         src={user.photoURL}
                         alt={user.displayName}
-                        className="w-12 rounded-full"
+                        className="w-10 rounded-full sm:w-12"
                     />
                 ) : (
                     <FaUserAlt size={20} />

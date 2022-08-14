@@ -8,7 +8,7 @@ const ShoppingCartButton = () => {
 
     return (
         <motion.button
-            className="relative rounded-full bg-white p-4"
+            className="relative rounded-full bg-white p-3 sm:p-4"
             animate={{ scale: 1 }}
             initial={{ scale: 0 }}
             whileHover={{

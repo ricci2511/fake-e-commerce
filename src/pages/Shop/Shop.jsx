@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Categories from 'pages/Shop/Categories';
 import ShopItem from 'pages/Shop/ShopItem';
-import AnimatedMain from 'components/UI/AnimatedMain';
+import AnimatedLayout from 'components/UI/AnimatedLayouts/AnimatedLayout';
 import ApiData from 'config/ApiData';
 import ErrorMessageWrapper from 'components/UI/ErrorMessageWrapper';
 import LoadingWrapper from 'components/UI/LoadingWrapper';
@@ -12,7 +12,7 @@ export const Shop = () => {
     const [category, setCategory] = useState('');
 
     return (
-        <AnimatedMain>
+        <AnimatedLayout>
             <section>
                 <Categories changeCategory={setCategory} />
             </section>
@@ -25,7 +25,7 @@ export const Shop = () => {
                           .map((item) => <ShopItem key={item.id} {...item} />)
                     : data.map((item) => <ShopItem key={item.id} {...item} />)}
             </section>
-        </AnimatedMain>
+        </AnimatedLayout>
     );
 };
 

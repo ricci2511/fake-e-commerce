@@ -4,8 +4,7 @@ import LinkWrapper from 'components/Navigation/LinkWrapper';
 import { motion } from 'framer-motion';
 
 const linkClasses = 'w-52 min-w-full py-3 px-2';
-const selectedLinkClasses =
-    'w-52 min-w-full rounded-l-2xl bg-paleWhite py-3 px-2';
+const selectedLinkClasses = `${linkClasses} rounded-l-2xl bg-paleWhite`;
 
 const SidebarLink = ({ path, linkName }) => {
     // inject Framer Motion props to NavLink component to do some cool animations

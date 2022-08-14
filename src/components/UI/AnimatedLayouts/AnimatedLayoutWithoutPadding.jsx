@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const AnimatedMain = ({ children }) => {
+const AnimatedLayoutWithoutPadding = ({ children }) => {
     return (
-        <main className="flex min-h-[36rem] w-full flex-col space-y-12 rounded-xl bg-paleWhite py-12 px-10 shadow-lg">
+        <main className="flex min-h-[36rem] w-full flex-col space-y-12 rounded-xl bg-paleWhite shadow-lg">
             <motion.div
-                className="py12 px10 flex flex-col space-y-12"
+                className="flex h-full flex-col space-y-12"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -16,4 +16,4 @@ const AnimatedMain = ({ children }) => {
     );
 };
 
-export default AnimatedMain;
+export default AnimatedLayoutWithoutPadding;

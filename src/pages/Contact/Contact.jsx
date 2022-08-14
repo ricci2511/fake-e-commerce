@@ -1,5 +1,5 @@
 import React from 'react';
-import AnimatedMain from 'components/UI/AnimatedMain';
+import AnimatedLayout from 'components/UI/AnimatedLayouts/AnimatedLayout';
 import { ReactComponent as GithubSVG } from 'assets/github.svg';
 import { ReactComponent as MailboxSVG } from 'assets/mailbox.svg';
 import { ReactComponent as TelegramSVG } from 'assets/telegram.svg';
@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 
 export const Contact = () => {
     return (
-        <AnimatedMain>
+        <AnimatedLayout>
             <h1 className="text-center text-2xl md:text-3xl lg:text-4xl">
                 Want to contact me? Found any bugs? Want to collaborate?
             </h1>
@@ -47,7 +47,7 @@ export const Contact = () => {
                     <RedditSVG width="5rem" height="5rem" />
                 </motion.a>
             </div>
-        </AnimatedMain>
+        </AnimatedLayout>
     );
 };
 

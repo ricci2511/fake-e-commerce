@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AnimatedMain from 'components/UI/AnimatedMain';
+import AnimatedLayout from 'components/UI/AnimatedLayouts/AnimatedLayout';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 
 const PageNotFound = () => {
     return (
-        <AnimatedMain>
+        <AnimatedLayout>
             <div className="flex w-full flex-col items-center justify-center gap-8 text-4xl font-bold">
                 <h1>404 Error</h1>
                 <h1>Page not found</h1>
@@ -18,7 +18,7 @@ const PageNotFound = () => {
                     </button>
                 </Link>
             </div>
-        </AnimatedMain>
+        </AnimatedLayout>
     );
 };
 

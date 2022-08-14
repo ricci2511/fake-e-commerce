@@ -2,11 +2,11 @@ import React from 'react';
 import Hero from 'pages/Home/Hero';
 import MainContent from 'pages/Home/MainContent';
 import Features from 'pages/Home/Features';
-import AnimatedMain from 'components/UI/AnimatedMain';
+import AnimatedLayout from 'components/UI/AnimatedLayouts/AnimatedLayout';
 
 const Home = () => {
     return (
-        <AnimatedMain>
+        <AnimatedLayout>
             <section className="flex h-full flex-col items-center justify-center space-y-12">
                 <Hero />
             </section>
@@ -19,7 +19,7 @@ const Home = () => {
                 </h2>
                 <Features />
             </section>
-        </AnimatedMain>
+        </AnimatedLayout>
     );
 };
 

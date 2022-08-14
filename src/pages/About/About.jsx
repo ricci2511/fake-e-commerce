@@ -1,11 +1,11 @@
 import React from 'react';
-import AnimatedMain from 'components/UI/AnimatedMain';
+import AnimatedLayout from 'components/UI/AnimatedLayouts/AnimatedLayout';
 import { FaReact } from 'react-icons/fa';
 import { SiTailwindcss, SiFramer, SiFirebase } from 'react-icons/si';
 
 const About = () => {
     return (
-        <AnimatedMain>
+        <AnimatedLayout>
             <h1 className="text-4xl lg:text-5xl xl:text-6xl">
                 About us or About{' '}
                 <strong className="border-b-4 border-b-purple">me?</strong>
@@ -107,7 +107,7 @@ const About = () => {
                     </ul>
                 </div>
             </section>
-        </AnimatedMain>
+        </AnimatedLayout>
     );
 };
 
