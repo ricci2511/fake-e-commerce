@@ -26,10 +26,10 @@ const Item = () => {
                         <img
                             src={image}
                             alt={title}
-                            className="w-3/5 self-center p-2"
+                            className="w-3/5 self-center p-2 pt-6 pb-3 lg:py-0"
                         />
                     </section>
-                    <section className="flex flex-col pb-6 lg:w-1/2 lg:justify-center lg:px-6 lg:pb-0">
+                    <section className="flex flex-col px-6 pb-6 lg:w-1/2 lg:justify-center lg:py-6">
                         <div className="flex flex-col justify-between gap-6 self-center lg:self-start">
                             <h1 className="w-full max-w-[35ch] text-xl font-bold md:text-2xl lg:text-4xl">
                                 {title}
